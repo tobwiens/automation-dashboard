@@ -7,6 +7,8 @@ module.exports = function (grunt) {
     // Show grunt task time
     require('time-grunt')(grunt);
 
+    grunt.loadNpmTasks("grunt-ts");
+
     // Configurable paths for the app
     var appConfig = {
         app: 'app',
@@ -401,6 +403,14 @@ module.exports = function (grunt) {
         },
         usemin: {
             html: ['dist/index.html']
+        },
+        ts: {
+            options: {
+                compiler: './node_modules/typescript/bin/tsc'
+            },
+            default : {
+                tsconfig: './tsconfig.json'
+            }
         }
     });
 
@@ -423,7 +433,8 @@ module.exports = function (grunt) {
         'uglify',
         'filerev',
         'usemin',
-        'htmlmin'
+        'htmlmin',
+        'ts'
     ]);
 
     grunt.registerTask('build', function() {
